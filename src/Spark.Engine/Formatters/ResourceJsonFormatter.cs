@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading;
-using System.Threading.Tasks;
+using Tasks = System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using Hl7.Fhir.Model;
@@ -28,9 +28,9 @@ namespace Spark.Formatters
         {
             return false;
         }
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Tasks.Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
-            return Task.Factory.StartNew(() =>
+            return Tasks.Task.Factory.StartNew(() =>
             {
                 return (object)null;
             });

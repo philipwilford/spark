@@ -14,7 +14,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
+using Tasks = System.Threading.Tasks;
 using Spark.Core;
 using Spark.Engine.Core;
 
@@ -53,9 +53,9 @@ namespace Spark.Formatters
             return type == typeof(Binary);
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Tasks.Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
-            return Task.Factory.StartNew(() =>
+            return Tasks.Task.Factory.StartNew(() =>
             {
                 MemoryStream stream = new MemoryStream();
                 readStream.CopyTo(stream);
@@ -80,9 +80,9 @@ namespace Spark.Formatters
             });
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, System.Net.TransportContext transportContext)
+        public override Tasks.Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, System.Net.TransportContext transportContext)
         {
-            return Task.Factory.StartNew(() =>
+            return Tasks.Task.Factory.StartNew(() =>
             {
                 
                 Binary binary = (Binary)value;

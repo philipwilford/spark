@@ -12,7 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
+using Tasks = System.Threading.Tasks;
 using System.Xml;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
@@ -41,9 +41,9 @@ namespace Spark.Formatters
             headers.ContentType = FhirMediaType.GetMediaTypeHeaderValue(type, ResourceFormat.Xml);
         }
 
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+        public override Tasks.Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
-            return Task.Factory.StartNew<object>( () => 
+            return Tasks.Task.Factory.StartNew<object>( () => 
             {
                 try
                 {
@@ -73,10 +73,10 @@ namespace Spark.Formatters
             });
         }
 
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        public override Tasks.Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
             
-            return Task.Factory.StartNew(() =>
+            return Tasks.Task.Factory.StartNew(() =>
             {
                 XmlWriter writer = new XmlTextWriter(writeStream, new UTF8Encoding(false));
                 SummaryType summary = requestMessage.RequestSummary();

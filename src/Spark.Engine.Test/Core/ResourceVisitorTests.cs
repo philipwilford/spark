@@ -125,7 +125,7 @@ namespace Spark.Engine.Test.Core
         {
             _expectedActionCounter = 1;
             ClinicalImpression ci = new ClinicalImpression();
-            ci.Trigger = new CodeableConcept("test.system", "test.code");
+            ci.Code = new CodeableConcept("test.system", "test.code");
             _sut.VisitByPath(ci, ob => 
                 {
                     _actualActionCounter++;
