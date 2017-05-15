@@ -34,8 +34,8 @@ namespace Spark
             // e.g. container.RegisterType<ITestService, TestService>();
             IControllerFactory unityControllerFactory = new UnityControllerFactory(container);
             ControllerBuilder.Current.SetControllerFactory(unityControllerFactory);
-            
-            config.DependencyResolver = new UnityDependencyResolver(container);            
+
+            config.DependencyResolver = new UnityDependencyResolver(container);
             GlobalHost.DependencyResolver = new SignalRUnityDependencyResolver(container);
         }
 
@@ -55,14 +55,14 @@ namespace Spark
             //    new InjectionConstructor(Settings.MongoUrl));
             container.RegisterType<IFhirStore, MongoFhirStore>(new ContainerControlledLifetimeManager(),
                    new InjectionConstructor(Settings.MongoUrl));
-            container.RegisterType<IGenerator, MongoIdGenerator>(new ContainerControlledLifetimeManager(), 
+            container.RegisterType<IGenerator, MongoIdGenerator>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(Settings.MongoUrl));
             container.RegisterType<ISnapshotStore, MongoSnapshotStore>(new ContainerControlledLifetimeManager(),
                   new InjectionConstructor(Settings.MongoUrl));
             container.RegisterType<IFhirStoreAdministration, MongoStoreAdministration>(new ContainerControlledLifetimeManager(),
                      new InjectionConstructor(Settings.MongoUrl));
             container.RegisterType<IIndexStore, MongoIndexStore>(new ContainerControlledLifetimeManager());
-        
+
             container.RegisterType<ITransfer, Transfer>(new ContainerControlledLifetimeManager());
             container.RegisterType<MongoIndexStore>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(Settings.MongoUrl, container.Resolve<MongoIndexMapper>()));
@@ -75,18 +75,18 @@ namespace Spark
             container.RegisterType<IFhirResponseInterceptor, ConditionalHeaderFhirResponseInterceptor>("ConditionalHeaderFhirResponseInterceptor");
             container.RegisterType<IFhirModel, FhirModel>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(SparkModelInfo.SparkSearchParameters));
-            container.RegisterType<FhirPropertyIndex>(new ContainerControlledLifetimeManager(), 
+            container.RegisterType<FhirPropertyIndex>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(container.Resolve<IFhirModel>()));
 
-            container.RegisterType<CompressionHandler>(new ContainerControlledLifetimeManager(), 
+            container.RegisterType<CompressionHandler>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(Settings.MaximumDecompressedBodySizeInBytes));
 
             container.RegisterType<InitializerHub>(new HierarchicalLifetimeManager());
             container.RegisterType<IHistoryStore, HistoryStore>(new InjectionConstructor(Settings.MongoUrl));
             container.RegisterType<IFhirService, FhirService>(new ContainerControlledLifetimeManager());
-                  //new InjectionFactory(unityContainer => unityContainer.Resolve<IFhirService>
-                  //(new DependencyOverride(typeof(IFhirServiceExtension[]), 
-                  //unityContainer.Resolve<IFhirExtensionsBuilder>().GetExtensions()))));
+            //new InjectionFactory(unityContainer => unityContainer.Resolve<IFhirService>
+            //(new DependencyOverride(typeof(IFhirServiceExtension[]), 
+            //unityContainer.Resolve<IFhirExtensionsBuilder>().GetExtensions()))));
 
             container.RegisterType<IServiceListener, SearchService>("searchListener");
             container.RegisterType<IFhirServiceExtension, SearchService>("search");
@@ -107,3 +107,25 @@ namespace Spark
         }
     }
 }
+
+//using Microsoft.Practices.Unity;
+//using System.Web.Http;
+//using Unity.WebApi;
+
+//namespace Spark
+//{
+//    public static class UnityConfig
+//    {
+//        public static void RegisterComponents()
+//        {
+//			var container = new UnityContainer();
+
+//            // register all your components with the container here
+//            // it is NOT necessary to register your controllers
+
+//            // e.g. container.RegisterType<ITestService, TestService>();
+
+//            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+//        }
+//    }
+//}
