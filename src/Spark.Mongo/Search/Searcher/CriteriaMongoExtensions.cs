@@ -18,7 +18,7 @@ using System.Reflection;
 using Spark.Search.Support;
 using Spark.Mongo.Search.Common;
 using Spark.Engine.Extensions;
-using Hl7.Fhir.Introspection;
+using Hl7.Fhir.Utility;
 
 namespace Spark.Search.Mongo
 {
