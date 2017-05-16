@@ -126,13 +126,13 @@ namespace Spark.Engine.Test.Core
             _expectedActionCounter = 1;
             ClinicalImpression ci = new ClinicalImpression();
             ci.Code = new CodeableConcept("test.system", "test.code");
-            _sut.VisitByPath(ci, ob => 
+            _sut.VisitByPath(ci, ob =>
                 {
                     _actualActionCounter++;
                     if (ob.ToString() != "test.system")
                         Assert.Fail();
-                }, 
-                "triggerCodeableConcept.coding.system");
+                },
+                "code.coding.system");
         }
 
         [TestMethod]
