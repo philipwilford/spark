@@ -106,6 +106,9 @@ namespace Spark.Store.Mongo
 
         public static void RemoveMetadata(BsonDocument document)
         {
+            // This field gives an error if not removed. Not sure of its actual intention
+            document.Remove(Field.RESOURCEID);
+
             document.Remove(Field.PRIMARYKEY);
             document.Remove(Field.REFERENCE);
             document.Remove(Field.WHEN);
