@@ -11,6 +11,7 @@ using Tasks = System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using Hl7.Fhir.Model;
+using Spark.Engine.Core;
 
 namespace Spark.Formatters
 {
@@ -18,7 +19,7 @@ namespace Spark.Formatters
     {
         public ResourceJsonFormatter()
         {
-            SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json+fhir"));
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue(FhirMediaType.JsonResource));
         }
         public override bool CanReadType(Type type)
         {
