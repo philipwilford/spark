@@ -11,6 +11,7 @@ using Tasks = System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using Hl7.Fhir.Model;
+using Spark.Engine.Core;
 
 namespace Spark.Formatters
 {
@@ -18,7 +19,7 @@ namespace Spark.Formatters
     {
         public XmlBundleFormatter()
         {
-            SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/xml"));
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue(FhirMediaType.XmlResource));
         }
         public override bool CanReadType(Type type)
         {
