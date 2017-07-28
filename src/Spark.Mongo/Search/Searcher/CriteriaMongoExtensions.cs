@@ -176,6 +176,8 @@ namespace Spark.Search.Mongo
                     {
                         case Modifier.EXACT:
                             return M.Query.EQ(parameterName, typedOperand);
+                        case Modifier.CONTAINS:
+                            return M.Query.Matches(parameterName, new BsonRegularExpression(new Regex($".*{typedOperand}.*")));
                         case Modifier.TEXT: //the same behaviour as :phonetic in previous versions.
                             return M.Query.Matches(parameterName + "soundex", "^" + typedOperand);
                         //case Modifier.BELOW:
